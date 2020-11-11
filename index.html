@@ -6,9 +6,21 @@
     <title>API Tester</title>
 </head>
 <body>
-<h1>Open the Console to Check if API Call Works</h1>
+<h1 id = "name"></h1>
+
+<p id ="instructions"> </p>
+
+<ul id ="ingredients">
+
+</ul>
     
 <script>
+
+//Element Variables
+
+var NameEl = document.getElementById("name")
+var instructionsEl = document.getElementById("instructions")
+var ingredientsEl = document.getElementById("ingredients")
 
 //Get Random Cocktail
  var randomCocktail = function() {
@@ -23,11 +35,11 @@ fetch(
 
     //Random Cocktail's Name
     var cocktailName = data.drinks[0].strDrink
-    console.log(cocktailName)
+    NameEl.append(cocktailName)
 
     //Random Cocktail's Instructions
     var cocktailInstructions = data.drinks[0].strInstructions
-    console.log(cocktailInstructions)
+    instructionsEl.append(cocktailInstructions)
 
     //Random Cocktail's Ingredients
     var ingredientArray = [
@@ -51,7 +63,9 @@ fetch(
     for (var i = 0; i < 14; ++i) {
       if (ingredientArray[i] !== 0) {
         var ingredientList = ingredientArray[i].replace("null", "");
-        console.log(ingredientList)
+        var listItem = document.createElement('li')
+        listItem.append(ingredientList)
+        ingredientsEl.append(listItem)
       }
     }
 
